@@ -47,11 +47,12 @@ module WCAPI
 
     def GetRecord(opts={})
       if opts[:type] == 'oclc'
-         @base = URI.parse "http://www.worldcat.org/webservices/catalog/content/" + opts[:id]
+        @base = URI.parse "http://www.worldcat.org/webservices/catalog/content/" + opts[:id]
       else
-	 @base = URI.parse 'http://www.worldcat.org/webservices/catalog/content/isbn/' + opts[:id]
+	      @base = URI.parse 'http://www.worldcat.org/webservices/catalog/content/isbn/' + opts[:id]
       end
-      opts.delete("type")
+      opts.delete(:type)
+      opts.delete(:id)
       opts["wskey"] = @wskey
       xml = do_request(opts)
       return GetRecordResponse.new(xml)
@@ -59,24 +60,26 @@ module WCAPI
 
 
     def GetLocations(opts={})
-       if opts[:type] == 'oclc'
-         @base = URI.parse "http://www.worldcat.org/webservices/catalog/content/libraries/" + opts[:id]
+      if opts[:type] == 'oclc'
+        @base = URI.parse "http://www.worldcat.org/webservices/catalog/content/libraries/" + opts[:id]
       else
-         @base = URI.parse 'http://www.worldcat.org/webservices/catalog/content/libraries/isbn/' + opts[:id]
+        @base = URI.parse 'http://www.worldcat.org/webservices/catalog/content/libraries/isbn/' + opts[:id]
       end
-      opts.delete("type")
+      opts.delete(:type)
+      opts.delete(:id)
       opts["wskey"] = @wskey
       xml = do_request(opts)
       return GetLocationResponse.new(xml)
     end    
 
     def GetCitation(opts = {})
-     if opts[:type] == 'oclc'
-         @base = URI.parse "http://www.worldcat.org/webservices/catalog/content/citations/" + opts[:id]
+      if opts[:type] == 'oclc'
+        @base = URI.parse "http://www.worldcat.org/webservices/catalog/content/citations/" + opts[:id]
       else
-         @base = URI.parse 'http://www.worldcat.org/webservices/catalog/content/citations/isbn/' + opts[:id]
+        @base = URI.parse 'http://www.worldcat.org/webservices/catalog/content/citations/isbn/' + opts[:id]
       end
-      opts.delete("type")
+      opts.delete(:type)
+      opts.delete(:id)
       opts["wskey"] = @wskey
       xml = do_request(opts)
       #Returns an HTML representation
@@ -129,9 +132,9 @@ module WCAPI
       $stderr.print("#{msg}\n") if @debug
     end
 
-     def to_h(default=nil)
-        Hash[ *inject([]) { |a, value| a.push value, default || yield(value) } ]
-     end
+    def to_h(default=nil)
+      Hash[ *inject([]) { |a, value| a.push value, default || yield(value) } ]
+    end
 
   end
 end
