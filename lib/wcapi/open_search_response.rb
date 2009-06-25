@@ -95,10 +95,11 @@ module WCAPI
 
       begin
         require 'xml/libxml'
-        _parser = LibXML::XML::Parser.new()
-        _parser.string = xml
-        doc = LibXML::XML::Document.new()
-        doc = _parser.parse
+        #_parser = LibXML::XML::Parser.new()
+        #_parser.string = xml
+        #doc = LibXML::XML::Document.new()
+        #doc = _parser.parse
+        doc = LibXML::XML::Document.string(xml)
       rescue
         begin
            require 'rexml/document'
