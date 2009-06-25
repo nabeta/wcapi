@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name = "wcapi"
-  spec.version = "0.0.0"
+  spec.version = "0.0.1"
 
   spec.author = "Kosuke Tanabe"
   spec.email = "tanabe@mwr.mediacom.keio.ac.jp"
