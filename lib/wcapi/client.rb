@@ -46,10 +46,10 @@ module WCAPI
     end
 
     def GetRecord(opts={})
-      if opts[:type] == 'oclc'
-        @base = URI.parse "http://www.worldcat.org/webservices/catalog/content/" + opts[:id]
-      else
+      if opts[:type] == 'isbn'
 	      @base = URI.parse 'http://www.worldcat.org/webservices/catalog/content/isbn/' + opts[:id]
+      else
+        @base = URI.parse "http://www.worldcat.org/webservices/catalog/content/" + opts[:id]
       end
       opts.delete(:type)
       opts.delete(:id)
